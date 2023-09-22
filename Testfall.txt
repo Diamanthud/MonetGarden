@@ -1,0 +1,35 @@
+MONETGARDEN PROJEKT ASSIGNMENT 08
+
+HEADER
+Kolla om dropdowns i header fungerar, de ska ha rätta titlar samt ta dig till
+rätta pages. 
+Ex: Städer ska ha Stockholm & Malmö man ska hamna i monets-garden.se/malmo
+Ex: Språk, ska kunna gå att trycka på SV och få Svenska och gå över till EN engelska. (Svenska är Default)
+
+Hemknappen i header ska ta dig till startsidan som är monets-garden.se (DVS ingen stad efter .se)
+
+Resterande sida---------
+PREMIÄR KNAPPEN SKA FUNGERA FÖR STOCKHOLM
+
+BILDSHOWEN PÅ STARTSIDA 
+Bildshowens ska fungera, är en rullgardin, dvs det går att klicka på < och > för
+att byta bild. Se till att bilderna har rätt namn via inspector och allt annat 
+
+VANLIGA FRÅGOR
+Se till att alla dropdowns rubriker fungerar 
+Ex: OM BILJETER RUBRIKEN. När man trycker på den så ska all text komma med
+om info för biljeter, det ska inte bli att det kladdar över andra rubriker, de ska 
+tryckas ner. 
+
+
+PILUPP KNAPPEN, DEN SOM SER TILL ATT DU HAMNAR LÄNGST UPP PÅ
+STARTSIDAN IGEN
+Den ska skjuta upp dig längst upp igen 
+
+KONTAKTA OSS
+Alla blå mail adresser ska skicka dig till din mailservice så du kan direkt
+maila rätt adress 
+"boka biljett" ska skicka dig till eventtim.se
+ "Gruppbokning" ska skicka dig till mailservice
+"Frågor" ska skicka dig till mailservice
+"Press"ska skicka dig till mailservice
