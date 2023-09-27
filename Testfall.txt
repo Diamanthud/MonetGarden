@@ -8,6 +8,7 @@ Ex: Språk, ska kunna gå att trycka på SV och få Svenska och gå över till E
 
 Hemknappen i header ska ta dig till startsidan som är monets-garden.se (DVS ingen stad efter .se)
 
+
 Resterande sida---------
 PREMIÄR KNAPPEN SKA FUNGERA FÖR STOCKHOLM
 

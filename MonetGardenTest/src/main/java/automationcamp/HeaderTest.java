@@ -14,54 +14,62 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 public class HeaderTest extends TestBase{
 
-	
 	@Test
 	void NavListIsCorrect () {
 		
 		//NAVIGATION
 		String loginUrl = "https://monets-garden.se";
-		page.navigate(loginUrl);
+		page.navigate(loginUrl);		
 		
-		// Hitta och klicka på knappen "Städer"
+		Locator acceptCookies = page.getByRole(AriaRole.BUTTON,
+                new Page.GetByRoleOptions().setName("Jag accepterar"));
+        if (acceptCookies.isVisible()) {
+            acceptCookies.click();
+        }
+		
+		//------STÄDER-----
+		 //Hitta och klicka på knappen "Städer"
         page.click("button.Header_listButton__GUrK4");
-
-        // Vänta på att listan med städer ska visas (du kan behöva ändra väntetiden beroende på webbplatsens respons)
+        // Vänta på att listan med städer ska visas 
         page.waitForSelector(".Header_innerList__wuB1y");
-
-        // Hitta och klicka på länken "Stockholm"
         page.click("a[href='/stockholm']");
-        
-        // Lägg till dina egna assertions här om det behövs
-        // Exempel: Kontrollera att du har nått den förväntade sidan efter klicket
+           assertThat(page).hasURL("https://monets-garden.se/stockholm");
 
-        // Återgå till föregående sida (tillbaka till listan med städer)
-        page.goBack();
+          page.goBack();
         
-        
-    	// Hitta och klicka på knappen "Städer"
+    	// Hitta och klicka på knappen "Städer" igen
         page.click("button.Header_listButton__GUrK4");
-
-        // Vänta på att listan med städer ska visas (du kan behöva ändra väntetiden beroende på webbplatsens respons)
+        // Vänta på att listan med städer ska visas
         page.waitForSelector(".Header_innerList__wuB1y");
-       
-        // Hitta och klicka på länken "Malmö"
         page.click("a[href='/malmo']");
-
-        // Lägg till dina egna assertions här om det behövs
-        // Exempel: Kontrollera att du har nått den förväntade sidan efter klicket
-
-        // Pausa i några sekunder för att observera effekten (kan användas för felsökning)
-        page.waitForTimeout(5000); // 5 sekunder
+           assertThat(page).hasURL("https://monets-garden.se/malmo");
+          page.goBack();  
+        
+        // ------GALLERY------	
+		page.click("text=Galleri");
+	        assertThat(page).hasURL("https://monets-garden.se/gallery");
+		  page.goBack();
+		  
+        // ------VANLIGA FRÅGOR------ 
+		page.click("text=Vanliga frågor");
+	        assertThat(page).hasURL("https://monets-garden.se/#vanliga-fragor");
+		  page.goBack();
+  
+		// ------KONTAKT------
+		page.click("text=kontakt");
+	        assertThat(page).hasURL("https://monets-garden.se/#kontakt");
+		  page.goBack();
+		  
+		  
+        /* Pausa i några sekunder för att observera effekten (kan användas för felsökning)
+        page.waitForTimeout(5000); // 5 sekunder*/
 		
 		/*  
 		//Locate elements
-		Locator cityButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Städer"));
 	        
 		//Interact with elements
 		cityButton.click();
 	
-		
-		
 		/*Navigation
 		String loginUrl = "https://monets-garden.se";
 		page.navigate(loginUrl);
@@ -76,7 +84,6 @@ public class HeaderTest extends TestBase{
 		//Assert result
 		assertThat(header).isVisible();
 		*/
-		
 		
 	}
 
