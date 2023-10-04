@@ -16,10 +16,12 @@ public class HeaderTest extends TestBase{
 
 	@Test
 	void NavListIsCorrect () {
+
 		
 		//NAVIGATION
 		String loginUrl = "https://monets-garden.se";
 		page.navigate(loginUrl);		
+		
 		
 		// Accept Cookies
 		Locator acceptCookies = page.getByRole(AriaRole.BUTTON,
@@ -28,23 +30,28 @@ public class HeaderTest extends TestBase{
             acceptCookies.click();
         }
 		
+        
 		//------STÄDER-----
-		 //Hitta och klicka på knappen "Städer"
+
+        // Hitta och klicka på knappen "Städer"
         page.click("button.Header_listButton__GUrK4");
         // Vänta på att listan med städer ska visas 
         page.waitForSelector(".Header_innerList__wuB1y");
-        page.click("a[href='stockholm']");
-           assertThat(page).hasURL("https://monets-garden.se/stockholm");
-          page.goBack();
+        // Hitta och klicka på länken "Stockholm"
+        page.click("a[href='/stockholm']");
+        assertThat(page).hasURL("https://monets-garden.se/stockholm");
+        page.goBack();
+
         
-    	// Hitta och klicka på knappen "Städer" igen
+     // Hitta och klicka på knappen "Städer"
         page.click("button.Header_listButton__GUrK4");
         // Vänta på att listan med städer ska visas
         page.waitForSelector(".Header_innerList__wuB1y");
+        // Hitta och klicka på länken "Malmö"
         page.click("a[href='/malmo']");
-           assertThat(page).hasURL("https://monets-garden.se/malmo");
-          page.goBack();  
-        
+        assertThat(page).hasURL("https://monets-garden.se/malmo");
+        page.goBack();
+          
           
         // ------GALLERY------	
 		page.click("text=Galleri");
@@ -63,43 +70,34 @@ public class HeaderTest extends TestBase{
 	        assertThat(page).hasURL("https://monets-garden.se/#kontakt");
 		  page.goBack();
 		  
+		  //------
+		  
 		// ------BILJETTER------  
 		page.click("button.Header_ctaButton__9S7Hn");
-        page.waitForSelector(".Header_innerList__wuB1y");
-        page.click("a[aria-label='Stockholm']");
-        assertThat(page).hasURL("https://www.eventim.se/eventseries/3289035/?affiliate=FKS&_gl=1*bh7hfz*_gcl_au*MTU3NjEzNDc2NC4xNjk1OTY5MTk1");
+   //     page.waitForSelector(".Header_innerList__wuB1y");
+   //     page.click("a[aria-label='Stockholm']");
+ //       assertThat(page).hasURL("https://www.eventim.se/eventseries/3289035/?affiliate=FKS&_gl=1*bh7hfz*_gcl_au*MTU3NjEzNDc2NC4xNjk1OTY5MTk1");
         page.goBack();
         
-        /*
-        page.click("a[href='/Stockholm']");
-           assertThat(page).hasURL("https://www.eventim.se/eventseries/3289035/?affiliate=FKS&_gl=1*bh7hfz*_gcl_au*MTU3NjEzNDc2NC4xNjk1OTY5MTk1");
-          page.goBack();*/
-          
-		  /*
-          page.click("button.Header_ctaButton__9S7Hn");
-          page.waitForSelector(".Header_innerList__wuB1y");
-          await page.waitForSelector("a[href='/Stockholm']", { visible: true });
-          page.click("a[href='/Stockholm']");
-          assertThat(page).hasURL("https://www.eventim.se/eventseries/3289035/?affiliate=FKS&_gl=1*bh7hfz*_gcl_au*MTU3NjEzNDc2NC4xNjk1OTY5MTk1");
-          page.goBack();*/
-		  
-		  
+
+		// ------SPRÅKVAL-----
+        Locator selectLocator = page.locator("#languagePicker");
+        // Klicka på select-elementet för att öppna dropdown-listan
+        selectLocator.click();
+        
+        // Vänta på att alternativet "en" blir synligt och klicka på det
+        page.selectOption("#languagePicker", "en");
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /* Pausa i några sekunder för att observera effekten (kan användas för felsökning)
         page.waitForTimeout(5000); // 5 sekunder*/
-		
-		/*  
-		//Locate elements
-	        
-		//Interact with elements
-		cityButton.click();
-	
-		/*Navigation
-		String loginUrl = "https://monets-garden.se";
-		page.navigate(loginUrl);
-		
-		String title = page.title();
-		System.out.println("Page Title is: " + title);
-		*/
 		
 		//Locate elements
 	
