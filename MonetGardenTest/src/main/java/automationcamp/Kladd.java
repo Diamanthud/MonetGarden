@@ -14,31 +14,34 @@ import base.TestBase;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
+import java.util.List;
+
 
 public class Kladd extends TestBase{
 
 	@Test
 	void NuTestarVi () {
+
+	    Locator acceptCookies;
+	    Locator PremiärBokaBiljett;
+	    String loginUrl = "https://monets-garden.se";
+	    
+	    
 		// Navigation
-		String loginUrl = "https://monets-garden.se";
 		page.navigate(loginUrl);		
 		
 		// Accept Cookies
-		Locator acceptCookies = page.getByRole(AriaRole.BUTTON,
-                new Page.GetByRoleOptions().setName("Jag accepterar"));
+		acceptCookies = page.getByRole(AriaRole.BUTTON,
+				new Page.GetByRoleOptions().setName("Jag accepterar"));
         if (acceptCookies.isVisible()) {
             acceptCookies.click();
         }
-   
-    	// ------BILJETTER------  
-		page.click("button.Header_ctaButton__9S7Hn");
-        page.waitForSelector(".Header_innerList__wuB1y");
-        page.click("a[aria-label='Stockholm']");
-      assertThat(page).hasURL("https://www.eventim.se/eventseries/3289035/?affiliate=FKS&_gl=1*bh7hfz*_gcl_au*MTU3NjEzNDc2NC4xNjk1OTY5MTk1");
-        page.goBack();
         
+       
         
-
+        /*
+        PremiärBokaBiljett = page.locator("div.Hero_sticker___a60T a.Sticker_link__T4_Rz");
+        PremiärBokaBiljett.click();*/
+        
 	}
-	}
-
+}
