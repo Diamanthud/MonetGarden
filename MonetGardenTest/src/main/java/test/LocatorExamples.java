@@ -1,4 +1,4 @@
-package automationcamp;
+package test;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +7,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Page.GetByTextOptions;
 import com.microsoft.playwright.options.AriaRole;
 
-import base.TestBase;
+import testbase.TestBase;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 

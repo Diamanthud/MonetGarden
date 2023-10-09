@@ -1,4 +1,5 @@
-package base;
+package pagebase;
+
 
 import com.microsoft.playwright.Page;
 

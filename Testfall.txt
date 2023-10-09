@@ -14,14 +14,13 @@ PREMIÄR KNAPPEN SKA FUNGERA FÖR STOCKHOLM
 
 BILDSHOWEN PÅ STARTSIDA 
 Bildshowens ska fungera, är en rullgardin, dvs det går att klicka på < och > för
-att byta bild. Se till att bilderna har rätt namn via inspector och allt annat 
+att byta bild. Se till att bilderna har rätt namn via inspector och allt annat - assert
 
 VANLIGA FRÅGOR
 Se till att alla dropdowns rubriker fungerar 
 Ex: OM BILJETER RUBRIKEN. När man trycker på den så ska all text komma med
 om info för biljeter, det ska inte bli att det kladdar över andra rubriker, de ska 
 tryckas ner. 
-
 
 PILUPP KNAPPEN, DEN SOM SER TILL ATT DU HAMNAR LÄNGST UPP PÅ
 STARTSIDAN IGEN
@@ -34,3 +33,9 @@ maila rätt adress
  "Gruppbokning" ska skicka dig till mailservice
 "Frågor" ska skicka dig till mailservice
 "Press"ska skicka dig till mailservice
+
+-----------------------------------------------------------
+SKRIVS I CMD FÖR ATT STARTA INSPECTOR (codegen)
+mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="codegen monets-garden.se"
+
+
