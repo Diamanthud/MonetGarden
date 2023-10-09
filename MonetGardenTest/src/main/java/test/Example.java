@@ -4,7 +4,7 @@ import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.*;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import java.util.*;
-import base.TestBase;
+import testbase.TestBase;
 
 public class Example extends TestBase{
 

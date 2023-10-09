@@ -31,10 +31,17 @@ public class Kladd extends TestBase{
 	void NuTestarVi () {
 		// Navigation
 		HomePage homePage = new HomePage(page);
+		CookieHandler cookieHandler = new CookieHandler(page);
+
 		homePage.OpenHomePage();
-	
-		
+		cookieHandler.acceptCookiesIfVisible();	
+	     
+	     page.locator(".Carousel_dots__K6YZr").click();
+	     page.locator(".Carousel_dots__K6YZr > button:nth-child(2)").click();
+	     page.locator(".Carousel_dots__K6YZr > button:nth-child(3)").click();
+	     page.locator("button:nth-child(4)").first().click();
+	     page.locator("button:nth-child(5)").click();
+	     page.locator(".Carousel_dot__WUXF2").first().click();
 
 	}
 	}
-

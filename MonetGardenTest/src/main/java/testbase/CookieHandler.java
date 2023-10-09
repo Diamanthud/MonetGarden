@@ -2,9 +2,6 @@ package testbase;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
-
-import java.net.CookieStore;
-
 import com.microsoft.playwright.Locator;
 
 public class CookieHandler {

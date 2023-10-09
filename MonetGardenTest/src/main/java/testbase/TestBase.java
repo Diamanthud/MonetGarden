@@ -33,8 +33,7 @@ public class TestBase {
 		context = browser.newContext();
 		page = context.newPage();
 		// Här kan du inkludera CookieHandler-funktionaliteten
-		CookieHandler cookieHandler = new CookieHandler(page);
-		cookieHandler.acceptCookiesIfVisible();
+
 	}
 
 	@AfterEach
