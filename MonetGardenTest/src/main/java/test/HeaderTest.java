@@ -18,12 +18,11 @@ public class HeaderTest extends TestBase {
 	void NavListIsCorrect() {
 
 		// ------NAVIGATION/COOKIES-----
-
+		
 		HomePage homePage = new HomePage(page);
-		CookieHandler cookieHandler = new CookieHandler(page);
+	
 
-		homePage.OpenHomePage();
-		cookieHandler.acceptCookiesIfVisible();
+		homePage.MonetHomePage();
 
 		// ------STÄDER-----
 		// Hitta och klicka på knappen "Städer"

@@ -3,68 +3,50 @@ package test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.microsoft.playwright.ElementHandle;
-import com.microsoft.playwright.Locator;
-
 import pages.HomePage;
-import testbase.CookieHandler;
 import testbase.TestBase;
 
 public class CarouselImageTest extends TestBase {
 
 	@Test
 	void CarouselButtonandImage() {
+		HomePage homePage = new HomePage(page);
+		homePage.MonetHomePage();
 
-		Locator carouselPrevButton;
-		Locator carouselNextButton;
-		ElementHandle imageElement;
+		page.waitForSelector(".keen-slider");
+		page.waitForSelector("img[src*='mg20.jpg']");
 
-		int numberOfClicks = 4;
-		String selector = "img[srcset*='30fb7a8abd/mg27.jpg/m/384x0/filters:quality=(75)']";
+		String[] imageUrls = { "mg20.jpg", "mg9.jpg", "monets-garten-wien-c-philipplipiarski_03.jpg", "mg27.jpg",
+				"mg25.jpg" };
+
+		homePage.clickPreviousButton(5);
+		for (String imageUrl : imageUrls) {
+			boolean isImagePresent = homePage.isImagePresent(imageUrl);
+			Assertions.assertTrue(isImagePresent, "Image " + imageUrl + " is not present in the carousel");
+		}
+
+		homePage.clickNextButton(5);
+	}
+
+	@Test
+	public void testCarouselImages() {
 
 		HomePage homePage = new HomePage(page);
-		CookieHandler cookieHandler = new CookieHandler(page);
+		homePage.MonetHomePage();
 
-		homePage.OpenHomePage();
-		cookieHandler.acceptCookiesIfVisible();
+		String[] imageUrls = { "mg20.jpg", "mg9.jpg", "monets-garten-wien-c-philipplipiarski_03.jpg", "mg27.jpg",
+				"mg25.jpg" };
 
-		// carouselButtons
-		carouselPrevButton = page.locator("button.Carousel_prevButton__OYQok");
-		carouselNextButton = page.locator("button.Carousel_nextButton__GhXRI");
+		for (String imageUrl : imageUrls) {
+			homePage.waitForCarouselImage(imageUrl);
+			homePage.clickCarouselDotButton();
 
-		// For-loop
-		for (int i = 0; i < numberOfClicks; i++) {
-			carouselPrevButton.click();
+			boolean isImagePresent = page.querySelector("img[src*='" + imageUrl + "']") != null;
+			boolean isDotButtonPresent = page.querySelector(".Carousel_dots__K6YZr > button") != null;
+
+			Assertions.assertTrue(isImagePresent, "Image " + imageUrl + " is not present in the carousel");
+			Assertions.assertTrue(isDotButtonPresent, "Dot button for Image " + imageUrl + " is not present");
 		}
-		for (int i = 0; i < numberOfClicks; i++) {
-			carouselNextButton.click();
-		}
-		// carouselDots
-		page.locator(".Carousel_dots__K6YZr").click();
-		page.locator(".Carousel_dots__K6YZr > button:nth-child(2)").click();
-		page.locator(".Carousel_dots__K6YZr > button:nth-child(3)").click();
-		page.locator("button:nth-child(4)").first().click();
-		page.locator("button:nth-child(5)").click();
-		page.locator(".Carousel_dot__WUXF2").first().click();
-
-		// Assertion
-		Assertions.assertTrue(page.locator(".Carousel_dots__K6YZr").count() > 0); // Check the first element was clicked
-		Assertions.assertTrue(page.locator(".Carousel_dots__K6YZr > button:nth-child(2)").count() > 0);
-		Assertions.assertTrue(page.locator(".Carousel_dots__K6YZr > button:nth-child(3)").count() > 0);
-		Assertions.assertTrue(page.locator("button:nth-child(4)").count() > 0);
-		Assertions.assertTrue(page.locator("button:nth-child(5)").count() > 0);
-		Assertions.assertTrue(page.locator(".Carousel_dot__WUXF2").count() > 0);
-
-		// CHECK IMAGE
-		imageElement = page.querySelector(selector);
-		assert imageElement != null : "Bild med srcset hittades inte";
-		String srcset = imageElement.getAttribute("srcset");
-		assert srcset.contains("30fb7a8abd/mg27.jpg/m/384x0/filters:quality=(75)") : "Srcset är inte som förväntat";
-		if (!srcset.contains("30fb7a8abd/mg27.jpg/m/384x0/filters:quality=(75)")) {
-			System.out
-					.println("Felaktigt srcset. Förväntat srcset: '30fb7a8abd/mg27.jpg/m/384x0/filters:quality=(75)'");
-			System.out.println("Aktuellt srcset: " + srcset);
-		}
-
 	}
+
 }

@@ -6,16 +6,18 @@ import com.microsoft.playwright.options.AriaRole;
 import pagebase.PageBase;
 
 public class LoginPage extends PageBase {
-	Page page;
-	
-	Locator usernameInput;
-	Locator passwordInput;
-	Locator loginButton;
-	Locator rememberMeCheckBox;
+
+
+		
+		Page page;
+		
+		Locator usernameInput;
+		Locator passwordInput;
+		Locator loginButton;
+		Locator rememberMeCheckBox;
 		
 
 		public LoginPage(Page page) {
-			this.page = page;
 			this.usernameInput = page.getByPlaceholder("Username");
 			this.passwordInput = page.getByPlaceholder("Password");
 			this.loginButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Log in"));
@@ -34,3 +36,5 @@ public class LoginPage extends PageBase {
 		}
 
 	}
+		
+	

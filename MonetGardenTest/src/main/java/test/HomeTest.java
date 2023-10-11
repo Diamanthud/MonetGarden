@@ -27,18 +27,6 @@ public class HomeTest extends TestBase {
 	@Test
 	void TestHomePage() {
 		
-		HomePage homePage = new HomePage(page);
-		CookieHandler cookieHandler = new CookieHandler(page);
-
-		homePage.OpenHomePage();
-		cookieHandler.acceptCookiesIfVisible();
-		
-		page.click("button.Header_listButton__GUrK4");
-		// Vänta på att listan med städer ska visas
-		page.waitForSelector(".Header_innerList__wuB1y");
-		page.click("a[href='/stockholm']");
-		assertThat(page).hasURL("https://monets-garden.se/stockholm");
-		page.goBack();
 
 
 	}

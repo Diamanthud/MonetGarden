@@ -15,31 +15,16 @@ public class CookieHandler {
 
 	public void acceptCookiesIfVisible() {
 		Locator acceptCookies = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Jag accepterar"));
+		boolean isNotAccepted = true; // Börjar med antagandet att knappen inte har klickats
 
 		if (acceptCookies.isVisible()) {
-			acceptCookies.click();
-			System.out.println("| Cookies Accepted |");
-		} else
-			System.out.println("| Cookies Not Accepted |");
-	}
+		    acceptCookies.click();
+		    System.out.println("| Cookies Accepted |");
+		    isNotAccepted = false; // Uppdatera variabeln om knappen klickades
+		} else {
+		    System.out.println("| Cookies Not Accepted |");
+		}
 
-	// Getter för Page
-	public Page getPage() {
-		return page;
-	}
+	
 
-	// Setter för Page
-	public void setPage(Page page) {
-		this.page = page;
-	}
-
-	// Getter för URL
-	public String getUrl() {
-		return url;
-	}
-
-	// Setter för URL
-	public void setUrl(String url) {
-		this.url = url;
-	}
-}
+}}
