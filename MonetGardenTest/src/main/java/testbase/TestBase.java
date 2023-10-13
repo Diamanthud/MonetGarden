@@ -32,8 +32,6 @@ public class TestBase {
 	void createContextAndPage() {
 		context = browser.newContext();
 		page = context.newPage();
-		// Här kan du inkludera CookieHandler-funktionaliteten
-
 	}
 
 	@AfterEach

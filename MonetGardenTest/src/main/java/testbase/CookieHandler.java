@@ -2,29 +2,32 @@ package testbase;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+
+import javax.print.attribute.standard.PagesPerMinute;
+
 import com.microsoft.playwright.Locator;
 
 public class CookieHandler {
 	private Page page;
-	private String url;
+	private Locator acceptCookies;
+	private boolean wasClicked;
 
 	public CookieHandler(Page page) {
 		this.page = page;
-		this.url = "https://monets-garden.se/";
+		wasClicked = false;
 	}
 
-	public void acceptCookiesIfVisible() {
-		Locator acceptCookies = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Jag accepterar"));
-		boolean isNotAccepted = true; // Börjar med antagandet att knappen inte har klickats
+	public boolean acceptCookiesIfVisible() {
+		acceptCookies = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Jag accepterar"));
+		wasClicked = false;
 
 		if (acceptCookies.isVisible()) {
-		    acceptCookies.click();
-		    System.out.println("| Cookies Accepted |");
-		    isNotAccepted = false; // Uppdatera variabeln om knappen klickades
+			acceptCookies.click();
+			System.out.println("| Cookies Accepted |");
+			wasClicked = true;
 		} else {
-		    System.out.println("| Cookies Not Accepted |");
+			System.out.println("| Cookies Not Accepted |");
 		}
-
-	
-
-}}
+		return wasClicked;
+	}
+}

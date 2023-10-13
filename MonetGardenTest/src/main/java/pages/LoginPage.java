@@ -6,8 +6,6 @@ import com.microsoft.playwright.options.AriaRole;
 import pagebase.PageBase;
 
 public class LoginPage extends PageBase {
-
-
 		
 		Page page;
 		
