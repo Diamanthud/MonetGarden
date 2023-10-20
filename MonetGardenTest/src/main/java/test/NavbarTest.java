@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import com.microsoft.playwright.Page;
 
-import pages.MonetsGardenPage;
+import pages.MonetsGardenNavPage;
 import testbase.TestBase;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -16,7 +16,7 @@ public class NavbarTest extends TestBase {
 
 	@Test
 	public void testNavigation() {
-		MonetsGardenPage monetsGardenPage = new MonetsGardenPage(page);
+		MonetsGardenNavPage monetsGardenPage = new MonetsGardenNavPage(page);
 
 		monetsGardenPage.navToMonetsGarden();
 
@@ -41,7 +41,7 @@ public class NavbarTest extends TestBase {
 	@Test
 	public void testLanguageChange() {
 
-		MonetsGardenPage monetsGardenPage = new MonetsGardenPage(page);
+		MonetsGardenNavPage monetsGardenPage = new MonetsGardenNavPage(page);
 
 		monetsGardenPage.navToMonetsGarden();
 		monetsGardenPage.changeLanguageToEnglish();
@@ -56,7 +56,7 @@ public class NavbarTest extends TestBase {
 	@Test
 	public void testOpenTickets() {
 
-		MonetsGardenPage monetsGardenPage = new MonetsGardenPage(page);
+		MonetsGardenNavPage monetsGardenPage = new MonetsGardenNavPage(page);
 		monetsGardenPage.navToMonetsGarden();
 
 		Page stockholmPopup = monetsGardenPage.openCityTickets("Stockholm");

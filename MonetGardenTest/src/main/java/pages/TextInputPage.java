@@ -22,32 +22,31 @@ public class TextInputPage extends PageBase {
 		page.navigate(homeUrl);
 
 		String placeholder = "MyButton";
-			
-			// Click on the button
-		    page.getByPlaceholder(placeholder).click();
 
-		    // Fill in the input text
-		    page.getByPlaceholder(placeholder).fill(inputText);
+		// Click on the button
+		page.getByPlaceholder(placeholder).click();
 
-		    // If the inputText is "NyKnappMedEnter," press Enter
-		    if (inputText.equals("NyKnappMedEnter")) {
-		        page.getByPlaceholder(placeholder).press("Enter");
-		    }
+		// Fill in the input text
+		page.getByPlaceholder(placeholder).fill(inputText);
 
-		    // Click the button again if needed
-		    if (inputText.equals("NyKnappMedClick") || inputText.equals("NyKnappMedClick2")) {
-		        page.getByPlaceholder(placeholder).click();
-		        System.out.println("test1");
-		    }
+		// If the inputText is "NyKnappMedEnter," press Enter
+		if (inputText.equals("NyKnappMedEnter")) {
+			page.getByPlaceholder(placeholder).press("Enter");
+		}
 
-		    // Handle specific case for changing button name
-		    if (inputText.equals("NyKnappMedClick")) {
-		        Page.GetByRoleOptions options = new Page.GetByRoleOptions()
-		                .setName("Button That Should Change it's Name Based on Input Value");
-		        page.getByRole(AriaRole.BUTTON, options).click();
-		        System.out.println("Test2");
-		    }
-		    
-		 
-	}}
+		// Click the button again if needed
+		if (inputText.equals("NyKnappMedClick") || inputText.equals("NyKnappMedClick2")) {
+			page.getByPlaceholder(placeholder).click();
+			System.out.println("test1");
+		}
 
+		// Handle specific case for changing button name
+		if (inputText.equals("NyKnappMedClick")) {
+			Page.GetByRoleOptions options = new Page.GetByRoleOptions()
+					.setName("Button That Should Change it's Name Based on Input Value");
+			page.getByRole(AriaRole.BUTTON, options).click();
+			System.out.println("Test2");
+		}
+
+	}
+}

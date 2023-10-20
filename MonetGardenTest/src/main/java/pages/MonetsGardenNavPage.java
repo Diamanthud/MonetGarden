@@ -4,23 +4,23 @@ import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
 
 import pagebase.PageBase;
-import testbase.CookieHandler;
 
-public class MonetsGardenPage extends PageBase {
+public class MonetsGardenNavPage extends PageBase {
 
 	private Page page;
 	private Page popupPage;
 
-	public MonetsGardenPage(Page page) {
+	Locator acceptCookies;
+
+	public MonetsGardenNavPage(Page page) {
 		this.page = page;
 	}
 
 	public void navToMonetsGarden() {
 		String homeUrl = "https://monets-garden.se/";
 		page.navigate(homeUrl);
-		CookieHandler cookieHandler = new CookieHandler(page);
-	    cookieHandler.acceptCookiesIfVisible();
-
+		acceptCookies = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Jag accepterar"));
+		acceptCookies.click();
 	}
 
 	public void navigateToStockholm() {

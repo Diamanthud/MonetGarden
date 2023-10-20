@@ -3,14 +3,14 @@ package test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import pages.HomePage;
+import pages.MonetGardenImgPage;
 import testbase.TestBase;
 
 public class CarouselImageTest extends TestBase {
 
 	@Test
 	void CarouselButtonandImage() {
-		HomePage homePage = new HomePage(page);
+		MonetGardenImgPage homePage = new MonetGardenImgPage(page);
 		homePage.MonetHomePage();
 
 		page.waitForSelector(".keen-slider");
@@ -31,7 +31,7 @@ public class CarouselImageTest extends TestBase {
 	@Test
 	public void testCarouselImages() {
 
-		HomePage homePage = new HomePage(page);
+		MonetGardenImgPage homePage = new MonetGardenImgPage(page);
 		homePage.MonetHomePage();
 
 		String[] imageUrls = { "mg20.jpg", "mg9.jpg", "monets-garten-wien-c-philipplipiarski_03.jpg", "mg27.jpg",
