@@ -3,8 +3,12 @@ package test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import javax.lang.model.element.Element;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.LocatorAssertions.IsVisibleOptions;
 import com.microsoft.playwright.options.AriaRole;
@@ -16,23 +20,26 @@ public class Kladd2 extends TestBase {
 
 	@Test
 	public void testAcceptCookies() {
-		
-		
-		
+		this.page = page;
+
 		String homeUrl = "http://uitestingplayground.com/progressbar";
 		page.navigate(homeUrl);
-	     // Wait for the progress bar to reach 75%
-        page.waitForSelector(".progress-bar[aria-valuenow='75']");
 
-        // Click the "Start" button
-        page.locator("button:has-text('Start')").click();
+		page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Start")).click();
+		page.waitForFunction("parseInt(document.querySelector('.progress-bar[aria-valuenow]').style.width) >= 75",
+				null);
 
-        // Wait for the progress bar to reach 100%
-        page.waitForSelector(".progress-bar[aria-valuenow='100']");
+		page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Stop")).click();
 
-        // Click the "Stop" button
-        page.locator("button:has-text('Stop')").click();
+		int resultElementCount = page.locator("#result").count();
 
-}}
+		if (resultElementCount > 0) {
+			String resultText = page.locator("#result").first().textContent();
+			System.out.println("RÄTT");
+			Assertions.assertTrue(resultText.contains("Result:"));
+		} else {
+			System.out.println("FEL");
 
-
+		}
+	}
+}

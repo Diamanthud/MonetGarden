@@ -1,35 +1,47 @@
 package pages;
 
-import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
-import com.microsoft.playwright.options.ElementState;
 
-public class ProgressBarPage {
+import testbase.TestBase;
+
+public class ProgressBarPage extends TestBase {
+
+	String ResultText;
 	Page page;
 
 	public ProgressBarPage(Page page) {
 		this.page = page;
-
 	}
 
-	public void LoadDelayPage1() {
-		String homeUrl = "https://uitestingplayground.com/progressbar";
+	public void OpenProgressBarPage() {
+		String homeUrl = "http://uitestingplayground.com/progressbar";
 		page.navigate(homeUrl);
-	     // Wait for the progress bar to reach 75%
-        page.waitForSelector(".progress-bar[aria-valuenow='75']");
+	}
 
-        // Click the "Start" button
-        page.locator("button:has-text('Start')").click();
+	public void StartAndWaitForCompletion() {
+		page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Start")).click();
+		page.waitForFunction("parseInt(document.querySelector('.progress-bar[aria-valuenow]').style.width) >= 75",
+				null);
+	}
 
-        // Wait for the progress bar to reach 100%
-        page.waitForSelector(".progress-bar[aria-valuenow='100']");
+	public void clickStop() {
+		page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Stop")).click();
+	}
 
-        // Click the "Stop" button
-        page.locator("button:has-text('Stop')").click();
-    }
-
+	public boolean progressBarIs75() {
+		String progressBarWidthString = page
+				.evaluate("document.querySelector('.progress-bar[aria-valuenow]').style.width").toString();
+		int progressBarWidth = Integer.parseInt(progressBarWidthString.replace("%", ""));
+		return progressBarWidth >= 75;
 
 	}
 
+	public boolean Result(String FinalResult) {
+		page.waitForSelector("#result");
+		ResultText = page.querySelector("#result").textContent();
+		return ResultText.contains(FinalResult);
 
+	}
+
+}
