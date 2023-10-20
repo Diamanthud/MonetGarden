@@ -27,9 +27,9 @@ public class HomePage extends PageBase {
 	}
 
 	public void MonetHomePage() {
-		String homeUrl = "https://monets-garden.se";
+		String homeUrl = "https://omni.se";
 		page.navigate(homeUrl);
-		acceptCookiesIfVisible();
+	
 	}
 
 	public boolean acceptCookiesIfVisible() {

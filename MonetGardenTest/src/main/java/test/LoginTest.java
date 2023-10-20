@@ -14,6 +14,7 @@ public class LoginTest extends TestBase {
 		LoginPage loginPage = new LoginPage(page);
 
 		loginPage.openLoginPage();
+		
 		loginPage.login("admin", "admin");
 		assertThat(page).hasTitle("Order Pizza");
 	}
