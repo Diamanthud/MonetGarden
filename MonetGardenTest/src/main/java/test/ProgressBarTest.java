@@ -1,8 +1,5 @@
 package test;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +12,7 @@ public class ProgressBarTest extends TestBase {
 	void LoginTest() {
 		ProgressBarPage test = new ProgressBarPage(page);
 
-		test.OpenProgressBarPage();
+		test.OpenPage();
 
 		test.StartAndWaitForCompletion();
 

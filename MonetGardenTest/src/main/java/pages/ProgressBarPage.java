@@ -14,7 +14,7 @@ public class ProgressBarPage extends TestBase {
 		this.page = page;
 	}
 
-	public void OpenProgressBarPage() {
+	public void OpenPage() {
 		String homeUrl = "http://uitestingplayground.com/progressbar";
 		page.navigate(homeUrl);
 	}
